@@ -1,2 +1,2 @@
-# mycra-mobileApp-android
- L'application mobile Android pour Consultant
+# mycra-mobileApp android & iOS
+ L'application mobile Android et iOS pour les Consultants
