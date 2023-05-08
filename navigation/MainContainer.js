@@ -1,30 +1,43 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+<<<<<<< HEAD
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity, View, Text } from 'react-native';
+=======
+import Menu, {MenuItem, MenuDivider} from 'react-native-material-menu';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+>>>>>>> 673a54afe9fa6445fcfdd065256c776c9d631a21
 
 // Screens
 import HomeScreen from './screens/HomeScreen';
 import CalendarScreen from './screens/CalendarScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
 import ProfileScreen from './screens/ProfileScreen';
+<<<<<<< HEAD
 import AboutScreen from './screens/AboutScreen';
 import LegalScreen from './screens/LegalScreen';
 import PrivacyScreen from './screens/PrivacyScreen';
+=======
+>>>>>>> 673a54afe9fa6445fcfdd065256c776c9d631a21
 
 //Screen names
 const homeName = "Accueil";
 const calendarName = "Calendrier";
 const notificationsName = "Notifications";
 const profileName = "Profil";
+<<<<<<< HEAD
 const aboutName = "A propos";
 const legalName = "Mentions légales";
 const privacyScreen = "Politique de confidentialité";
+=======
+
+>>>>>>> 673a54afe9fa6445fcfdd065256c776c9d631a21
 
 const Tab = createBottomTabNavigator();
 
 function MainContainer() {
+<<<<<<< HEAD
   const renderMenu = (navigation) => (
     <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
       <Ionicons name="menu" size={30} color="black" style={{ marginRight: 20 }} />
@@ -39,6 +52,8 @@ function MainContainer() {
     </Stack.Navigator>
   );
 
+=======
+>>>>>>> 673a54afe9fa6445fcfdd065256c776c9d631a21
   return (
     <NavigationContainer>
       <Tab.Navigator
