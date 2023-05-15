@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image } from 'react-native';
 import MainContainer from './navigation/MainContainer';
+import WelcomeScreen from './navigation/screens/WelcomeScreen';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -24,7 +25,7 @@ function App() {
           </Text>
         </View>
       ) : (
-        <MainContainer />
+        <WelcomeScreen />
       )}
     </>
   );
