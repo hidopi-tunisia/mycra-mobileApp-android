@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; // installation du package vector-icons
 
 const HomeScreen = () => {
@@ -9,9 +9,11 @@ const HomeScreen = () => {
       <Text style={styles.description}>Introduction & description</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.button}>
+          <Image style={styles.image} source={require('../../assets/partnership.png')} />
           <Text style={styles.buttonText}>Nous rejoindre</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
+          <Image style={styles.image} source={require('../../assets/user.png')} />
           <Text style={styles.buttonText}>Se connecter</Text>
         </TouchableOpacity>
       </View>
@@ -32,10 +34,17 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  image: {
+    width: 80,
+    height: 80,
+    marginBottom: 20,
+    position: 'absolute',
+    top: 50,
   },
   title: {
     fontSize: 24,
@@ -48,7 +57,6 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     marginBottom: 20,
   },
   button: {
