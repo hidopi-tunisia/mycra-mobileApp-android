@@ -4,6 +4,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { createStackNavigator } from '@react-navigation/stack';
 import AuthScreen from './AuthScreen';
 
+const authName = "Authentification";
+
 const Stack = createStackNavigator();
 
 export default function WelcomeScreen({ navigation }) {
@@ -15,7 +17,7 @@ export default function WelcomeScreen({ navigation }) {
         component={Welcome}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="AuthScreen" component={AuthScreen} />
+      <Stack.Screen name={authName} component={AuthScreen} />
     </Stack.Navigator>
   );
 }
@@ -30,7 +32,7 @@ function Welcome({ navigation }) {
           <Image style={styles.image} source={require('../../assets/partnership.png')} />
           <Text style={styles.buttonText}>Nous rejoindre</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AuthScreen')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(authName)}>
           <Image style={styles.image} source={require('../../assets/user.png')} />
           <Text style={styles.buttonText}>Se connecter</Text>
         </TouchableOpacity>

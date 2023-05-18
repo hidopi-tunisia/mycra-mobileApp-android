@@ -30,10 +30,10 @@ function MainContainer() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="About" component={AboutScreen} />
-        <Stack.Screen name="Legal" component={LegalScreen} />
-        <Stack.Screen name="Privacy" component={PrivacyScreen} />
+        <Stack.Screen name={homeName} component={HomeScreen} />
+        <Stack.Screen name={calendarName} component={CalendarScreen} />
+        <Stack.Screen name={notificationsName} component={NotificationsScreen} />
+        <Stack.Screen name={profileName} component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
