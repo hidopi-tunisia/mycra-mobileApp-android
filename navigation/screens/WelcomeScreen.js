@@ -1,18 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Linking } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { createStackNavigator } from '@react-navigation/stack';
+import AuthScreen from './AuthScreen';
 
-const HomeScreen = () => {
+const Stack = createStackNavigator();
+
+export default function WelcomeScreen({ navigation }) {
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Welcome"
+        component={Welcome}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="AuthScreen" component={AuthScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function Welcome({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome</Text>
       <Text style={styles.description}>Introduction & description</Text>
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => Linking.openURL('http://hidopi.com/')}>
           <Image style={styles.image} source={require('../../assets/partnership.png')} />
           <Text style={styles.buttonText}>Nous rejoindre</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AuthScreen')}>
           <Image style={styles.image} source={require('../../assets/user.png')} />
           <Text style={styles.buttonText}>Se connecter</Text>
         </TouchableOpacity>
@@ -30,7 +48,7 @@ const HomeScreen = () => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -52,7 +70,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 50,
     marginBottom: 50,
-  },  
+  },
   description: {
     fontSize: 20,
     marginBottom: 200,
@@ -86,5 +104,3 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 });
-
-export default HomeScreen;
