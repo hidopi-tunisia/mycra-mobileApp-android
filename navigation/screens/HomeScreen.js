@@ -6,6 +6,7 @@ const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Bienvenue user</Text>
+            <Text style={styles.description}>Merci de saisir votre CRA avant la fin du mois actuel. Le mois est déjà pré-rempli</Text>
             <View style={styles.calendarContainer}>
                 <Calendar />
             </View>
@@ -21,8 +22,11 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 30,
-        marginTop: 50,
         marginBottom: 30,
+    },
+    description: {
+        fontSize: 18,
+        marginBottom: 20,
     },
     calendarContainer: {
         width: '100%',
