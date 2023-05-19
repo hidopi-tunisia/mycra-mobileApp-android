@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
 const HomeScreen = () => {
@@ -9,6 +9,14 @@ const HomeScreen = () => {
             <Text style={styles.description}>Merci de saisir votre CRA avant la fin du mois actuel. Le mois est déjà pré-rempli</Text>
             <View style={styles.calendarContainer}>
                 <Calendar />
+            </View>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>Copier le dernier CRA</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>Valider mon CRA</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -34,6 +42,20 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         borderRadius: 5,
         padding: 20,
+    },
+    buttonContainer: {
+        marginTop: 20,
+    },
+    button: {
+        backgroundColor: '#e6e6e6',
+        alignItems: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        marginVertical: 5,
+    },
+    buttonText: {
+        color: 'black',
+        fontSize: 16,
     },
 });
 
