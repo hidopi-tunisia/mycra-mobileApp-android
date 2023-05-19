@@ -8,7 +8,7 @@ const authName = "Authentification";
 
 const Stack = createStackNavigator();
 
-export default function WelcomeScreen({ navigation }) {
+export default function WelcomeScreen() {
 
   return (
     <Stack.Navigator>
@@ -17,7 +17,7 @@ export default function WelcomeScreen({ navigation }) {
         component={Welcome}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name={authName} component={AuthScreen} />
+      <Stack.Screen name={authName} component={AuthScreen} options= {{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createStackNavigator } from '@react-navigation/stack';
 
 // Screens
 import HomeScreen from './screens/HomeScreen';
@@ -23,21 +22,14 @@ const aboutName = "A propos";
 const legalName = "Mentions légales";
 const privacyName = "Politique de confidentialité";
 
-const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function MainContainer() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name={homeName} component={HomeScreen} />
-        <Stack.Screen name={calendarName} component={CalendarScreen} />
-        <Stack.Screen name={notificationsName} component={NotificationsScreen} />
-        <Stack.Screen name={profileName} component={ProfileScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <TabNavigator />
   );
 }
+
 
 function TabNavigator() {
   return (
