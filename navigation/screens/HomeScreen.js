@@ -1,11 +1,36 @@
-import * as React from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Calendar } from 'react-native-calendars';
 
-export default function HomeScreen({ navigation }) {
+const HomeScreen = () => {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text
-                style={{ fontSize: 26, fontWeight: 'bold' }}>Home Screen</Text>
+        <View style={styles.container}>
+            <Text style={styles.text}>Bienvenue user</Text>
+            <View style={styles.calendarContainer}>
+                <Calendar />
+            </View>
         </View>
     );
-}
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    text: {
+        fontSize: 30,
+        marginTop: 50,
+        marginBottom: 30,
+    },
+    calendarContainer: {
+        width: '100%',
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 5,
+        padding: 20,
+    },
+});
+
+export default HomeScreen;
