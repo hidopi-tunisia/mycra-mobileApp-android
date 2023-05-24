@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import MainContainer from './navigation/MainContainer';
 import WelcomeScreen from './navigation/screens/WelcomeScreen';
-import { createStackNavigator } from '@react-navigation/stack';
-import AuthScreen from './navigation/screens/AuthScreen';
 
 /**
  * Mise en place du SplashScreen
