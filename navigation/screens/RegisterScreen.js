@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import PasswordConfirmationScreen from './PasswordConfirmationScreen';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-      <Stack.Navigator>
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="PasswordConfirmation" component={PasswordConfirmationScreen} />
-      </Stack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="PasswordConfirmation" component={PasswordConfirmationScreen} />
+    </Stack.Navigator>
   );
 }
 
 export function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleEmailVerification = () => {
     if (!email.endsWith('@r2d2smartfun.fr')) {
-      console.log("Veuillez contacter votre manager pour plus d'informations");
+      setErrorMessage("Veuillez contacter votre manager pour plus d'informations");
       return;
     }
 
@@ -28,7 +30,8 @@ export function RegisterScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Inscription</Text>
-      <View style={styles.inputContainer2}>
+      {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
+      <View style={styles.inputContainer}>
         <Image source={require('../../assets/email.png')} style={styles.logo} />
         <TextInput
           placeholder="nom.prenom@r2d2smartfun.fr"
@@ -44,50 +47,6 @@ export function RegisterScreen({ navigation }) {
   );
 }
 
-export function PasswordConfirmationScreen({ route }) {
-  const { email } = route.params;
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  const handlePasswordConfirmation = () => {
-    if (password !== confirmPassword) {
-      console.log("Les mots de passe ne correspondent pas");
-      return;
-    }
-
-    // Ajoutez ici la logique de confirmation du mot de passe
-  };
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Confirmation du mot de passe</Text>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Nouveau mot de passe</Text>
-        <TextInput
-          placeholder="Saisissez votre nouveau mot de passe"
-          value={password}
-          onChangeText={setPassword}
-          style={styles.input}
-          secureTextEntry
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Confirmer le mot de passe</Text>
-        <TextInput
-          placeholder="Confirmez votre mot de passe"
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-          style={styles.input}
-          secureTextEntry
-        />
-      </View>
-      <TouchableOpacity onPress={handlePasswordConfirmation} style={styles.button}>
-        <Text style={styles.buttonText}>Confirmer le mot de passe</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -97,7 +56,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 24,
-    height: 24, 
+    height: 24,
     marginRight: 10,
   },
   title: {
@@ -105,26 +64,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  emailText: {
-    fontSize: 16,
-    marginBottom: 20,
-  },
   inputContainer: {
-    width: '100%',
-    marginBottom: 20,
-  },
-  inputContainer2: {
     width: '100%',
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  inputLabel: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
   input: {
-    width: '100%',
+    flex: 1,
     height: 40,
     borderWidth: 1,
     borderColor: 'gray',
@@ -142,5 +89,9 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 16,
+  },
+  error: {
+    color: 'red',
+    marginBottom: 10,
   },
 });
