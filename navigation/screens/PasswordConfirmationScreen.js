@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import AccountSuccessScreen from './AccountSuccessScreen';
-
-const Stack = createStackNavigator();
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function PasswordConfirmationScreen({ route, navigation }) {
   const { email } = route.params;
@@ -29,7 +25,7 @@ export default function PasswordConfirmationScreen({ route, navigation }) {
         console.log(data);
         setErrorMessage('');
         // Rediriger vers la page indiquant que le compte a été créé avec succès
-        navigation.navigate('AccountSuccess');
+        navigation.navigate('AccountSuccessScreen');
       })
       .catch(error => {
         console.log(error);
@@ -113,5 +109,3 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
-
-export { PasswordConfirmationScreen };

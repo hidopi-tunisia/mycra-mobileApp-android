@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import PasswordConfirmationScreen from './PasswordConfirmationScreen';
+import AccountSuccessScreen from './AccountSuccessScreen';
 
 const Stack = createStackNavigator();
 
@@ -10,11 +11,12 @@ export default function App() {
     <Stack.Navigator>
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="PasswordConfirmation" component={PasswordConfirmationScreen} />
+      <Stack.Screen name="AccountSuccessScreen" component={AccountSuccessScreen} />
     </Stack.Navigator>
   );
 }
 
-export function RegisterScreen({ navigation }) {
+function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
