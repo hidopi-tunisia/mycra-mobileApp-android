@@ -1,20 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import LoginPage from './AuthScreen'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function AccountSuccessScreen({ navigation }) {
-  const handleGoBack = () => {
-    navigation.navigate('Login');
-  };
-
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.closeButton} onPress={handleGoBack}>
-        <AntDesign name="close" size={24} color="black" />
+      <Text style={styles.title}>Votre compte a été créé avec succès !</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.button}>
+        <Text style={styles.buttonText}>Aller à l'écran de connexion</Text>
       </TouchableOpacity>
-      <Text style={styles.title}>Compte créé avec succès !</Text>
-      <Text style={styles.message}>Vous pouvez maintenant vous connecter.</Text>
     </View>
   );
 }
@@ -24,20 +17,23 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  message: {
-    fontSize: 16,
-    textAlign: 'center',
+  button: {
+    backgroundColor: 'blue',
+    width: '80%',
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
   },
-  closeButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
