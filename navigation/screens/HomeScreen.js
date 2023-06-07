@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
 const HomeScreen = () => {
@@ -10,6 +10,9 @@ const HomeScreen = () => {
   const firstDayOfWeek = firstDayOfMonth.getDay();
   const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
   const [selectedDates, setSelectedDates] = useState([]);
+  const [confirmedDates, setConfirmedDates] = useState([]);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [numberOfDaysWorked, setNumberOfDaysWorked] = useState(0);
 
   useEffect(() => {
     const prepopulateDates = () => {
@@ -24,6 +27,7 @@ const HomeScreen = () => {
     };
     const prepopulatedDates = prepopulateDates();
     setSelectedDates(prepopulatedDates);
+    setNumberOfDaysWorked(prepopulatedDates.length);
   }, [currentMonth, currentYear, daysInMonth]);
 
   const markedDates = {};
@@ -52,6 +56,20 @@ const HomeScreen = () => {
     }
   };
 
+  const validateCRA = () => {
+    setConfirmedDates([...selectedDates]);
+    setShowConfirmationModal(true);
+  };
+
+  const copyCRA = () => {
+    const craText = confirmedDates.join(', ');
+    Clipboard.setString(craText);
+  };
+
+  const closeConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Bienvenue user</Text>
@@ -70,13 +88,24 @@ const HomeScreen = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Copier le dernier CRA</Text>
+        <TouchableOpacity style={styles.button} onPress={validateCRA}>
+          <Text style={styles.buttonText}>Valider le CRA</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Valider mon CRA</Text>
+        <TouchableOpacity style={styles.button} onPress={copyCRA}>
+          <Text style={styles.buttonText}>Copier le CRA</Text>
         </TouchableOpacity>
       </View>
+
+      {/* Modal de confirmation */}
+      {showConfirmationModal && (
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalText}>Voulez-vous confirmer les jours sélectionnés ?</Text>
+          <Text style={styles.modalText}>Nombre de jours travaillés : {numberOfDaysWorked}</Text>
+          <TouchableOpacity style={styles.modalButton} onPress={closeConfirmationModal}>
+            <Text style={styles.modalButtonText}>Confirmer</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
@@ -113,6 +142,29 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   buttonText: {
+    color: 'black',
+    fontSize: 16,
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5,
+  },
+  modalText: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  modalButton: {
+    backgroundColor: '#e6e6e6',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginVertical: 5,
+  },
+  modalButtonText: {
     color: 'black',
     fontSize: 16,
   },
