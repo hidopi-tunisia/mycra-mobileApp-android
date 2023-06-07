@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Clipboard, Modal } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
 const HomeScreen = () => {
@@ -50,9 +50,17 @@ const HomeScreen = () => {
     }
 
     if (selected) {
-      setSelectedDates((prevDates) => prevDates.filter((d) => d !== date.dateString));
+      setSelectedDates((prevDates) => {
+        const updatedDates = prevDates.filter((d) => d !== date.dateString);
+        setNumberOfDaysWorked(updatedDates.length);
+        return updatedDates;
+      });
     } else {
-      setSelectedDates((prevDates) => [...prevDates, date.dateString]);
+      setSelectedDates((prevDates) => {
+        const updatedDates = [...prevDates, date.dateString];
+        setNumberOfDaysWorked(updatedDates.length);
+        return updatedDates;
+      });
     }
   };
 
@@ -97,7 +105,7 @@ const HomeScreen = () => {
       </View>
 
       {/* Modal de confirmation */}
-      {showConfirmationModal && (
+      <Modal visible={showConfirmationModal} animationType="slide" transparent={true}>
         <View style={styles.modalContainer}>
           <Text style={styles.modalText}>Voulez-vous confirmer les jours sélectionnés ?</Text>
           <Text style={styles.modalText}>Nombre de jours travaillés : {numberOfDaysWorked}</Text>
@@ -105,7 +113,7 @@ const HomeScreen = () => {
             <Text style={styles.modalButtonText}>Confirmer</Text>
           </TouchableOpacity>
         </View>
-      )}
+      </Modal>
     </View>
   );
 };
@@ -152,6 +160,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 5,
+    margin: 50,
   },
   modalText: {
     fontSize: 16,
